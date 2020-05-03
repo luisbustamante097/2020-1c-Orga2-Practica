@@ -1,20 +1,20 @@
 								// SIZE	| OFFSET
-struct A {						//  82  |  XX
-	int n;						//  XX  |  XX
-	int m;						//  XX  |  XX
-	struct A *s;				//  XX  |  XX
-} __attribute__((packed));		//  XX  |  XX
+struct A {
+	int n;						//  4B  |  0
+	int m;						//  4B  |  4
+	struct A *s;				//  8B  |  8
+} __attribute__((packed));		//      |  16
 
-struct B {						//  XX  |  XX     
-	unsigned int n;				//  XX  |  XX
-	unsigned short v[3];		//  XX  |  XX
-	struct B *s;				//  XX  |  XX
-} __attribute__((packed));		//  XX  |  XX
+struct B {
+	unsigned int n;				//  4B  |  0
+	unsigned short v[3];		//  6B  |  4
+	struct B *s;				//  8B  |  10
+} __attribute__((packed));		//      |  18
 
-struct C {						//  XX  |  XX
-	unsigned char c;			//  XX  |  XX
-	struct C *v[10];			//  XX  |  XX
-} __attribute__((packed));		//  XX  |  XX
+struct C {
+	unsigned char c;			//  1B  |  0
+	struct C *v[10];			//  80B |  1
+} __attribute__((packed));		//      |  81   
 
 // a) Indicar en cada caso el offset requerido para direccionar sucesivamente
 // los elementos del vector
