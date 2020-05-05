@@ -46,6 +46,11 @@ gcc -no-pie -c -m64 funcion.c -o funcion.o
 gcc -no-pie -o ejec -m64 main.o funcion.o
 ```
 
+## Valgrind
+```sh
+valgrind --leak-check=full --show-leak-kinds=all -v ./holamundo
+```
+
 ## Codigos de debug
 
 ```
