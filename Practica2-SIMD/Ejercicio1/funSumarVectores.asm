@@ -14,6 +14,8 @@ sumarVectores:
 	; 	ecx <- dimension
 	
 	
+	
+	
 	 
 	
 	pop rbp
