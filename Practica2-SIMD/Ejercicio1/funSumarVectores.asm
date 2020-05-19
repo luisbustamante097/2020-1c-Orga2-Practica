@@ -14,8 +14,8 @@ sumarVectores:
 	; 	rdx <- char *Resultado
 	; 	ecx <- dimension
 
-	;ecx = ecx/128  (128 = 16B) y (128= 2 << 7)
-	shl ecx, 7
+	;ecx = ecx/16 (16 = 2 << 4) (porque hay 16 chars en 16B)
+	shr ecx, 4
 .ciclo:
 		;MOVDQU xmm1, xmm2/m128
 		movdqu xmm0, [rdi]		;xmm0 = |x0|...|xF|
