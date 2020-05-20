@@ -50,27 +50,3 @@ gcc -no-pie -o ejec -m64 main.o funcion.o
 ```sh
 valgrind --leak-check=full --show-leak-kinds=all -v ./holamundo
 ```
-
-## Codigos de debug
-
-```
-x/Nuf ADDR
-x/Nuf &variable
-```
-- N = Cantidad (bytes)
-- u = Unidad b|h|w|g
-	- b:byte, h:word, w:dword, g:qword
-- f = Formato x|d|u|o|f|a
-	- x:hex, d:decimal, u:unsigned decimal, o:octal, f:float,
-	- a:direcciones, s:strings, i:instrucciones.
-
-```
-print var
-```
-Printea la variable seleccionada
-```
-watch
-rwatch var
-awatch var
-```
-Hace un breakpoint cuando la variable sea escrita (watch) ;leida (rwatch); leida y modificada (awatch)
