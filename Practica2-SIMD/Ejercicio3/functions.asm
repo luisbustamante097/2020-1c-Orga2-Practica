@@ -1,5 +1,12 @@
 global MultiplicarVectores
 global ProductoInterno
+global SumarRestarAlternado
+
+section .rodata
+	ejc_add_mask: DD 0xFFFFFFFF, 0x0, 0xFFFFFFFF, 0x0
+	;|FFFFFFFF|00000000|FFFFFFFF|00000000|
+	ejc_sub_mask: DD 0x0, 0xFFFFFFFF, 0x0, 0xFFFFFFFF
+	;|00000000|FFFFFFFF|00000000|FFFFFFFF|
 
 section .text
 MultiplicarVectores:
@@ -102,5 +109,61 @@ ProductoInterno:
 			lea B_ptr, [B_ptr + 16]
 		loop .ciclo
 
+		pop rbp
+		ret
+
+SumarRestarAlternado:
+		push rbp
+		mov rbp, rsp
+		
+		;void SumarRestarAlternado(int *A, int *B, int* Res, int dimension)
+		; Es decir, el Res tiene que seguir el siguiente patron:
+		; Res = (A1+B1,A2−B2,A3+B3,A4−B4,...)
+		;	rdi <- int *A
+		;	rsi <- int *B
+		;	rdx <- int *Res
+		;	ecx <- int dimension
+		
+		%define A_ptr		rdi
+		%define B_ptr		rsi
+		%define Res_ptr		rdx
+		%define dim			ecx
+		
+		xor accum, accum
+		
+		shr dim, 2 ; ecx = dim/4  (porque en 16B entran 4 ints)
+		
+	.ciclo:
+			movdqu xmm0, [A_ptr]
+			movdqu xmm1, [B_ptr]
+			;xmm0 = | x0 | x1 | x2 | x3 |
+			;xmm1 = | y0 | y1 | y2 | y3 |
+			
+			;guardo copias
+			movdqu xmm2, xmm0
+			
+			paddd xmm0, xmm1
+			;xmm0 = |x0+y0|x1+y1|x2+y2|x3+y3|
+			psubd xmm2, xmm1
+			;xmm2 = |x0-y0|x1-y1|x2-y2|x3-y3|
+			
+			movdqu xmm3, [ejc_add_mask]
+			pand xmm0, xmm3
+			;xmm0 = |x0+y0|0...0|x2+y2|0...0|
+			
+			movdqu xmm4, [ejc_sub_mask]
+			pand xmm2, xmm4
+			;xmm2 = |0...0|x1-y1|0...0|x3-y3|
+			
+			por xmm0, xmm2
+			;xmm0 = |x0+y0|x1-y1|x2+y2|x3-y3|
+			
+			movdqu [Res_ptr], xmm0 
+		
+			lea A_ptr, [A_ptr + 16]
+			lea B_ptr, [B_ptr + 16]
+			lea Res_ptr, [Res_ptr + 16]
+		loop .ciclo
+		
 		pop rbp
 		ret

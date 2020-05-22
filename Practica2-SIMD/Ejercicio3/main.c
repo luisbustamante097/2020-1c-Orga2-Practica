@@ -122,14 +122,52 @@ int main(int argc, char const *argv[]) {
 	printf("RESULTADO = %d\n", res_fun);
 	
 	//assert(res_fun==accum);
-	
-	
 	printf("\n--------------------------------------------------\n");
+	
+	dim = 32;
+	int* vec_int_A = (int*) malloc(sizeof(int)*dim);
+	int* vec_int_B = (int*) malloc(sizeof(int)*dim);
+	int* vec_int_Res_2 = (int*) malloc(sizeof(int)*dim);
+	
+	upper = 20; //0x7FFF;
+	lower = 0;
+	srand(3);
+	for (int i = 0; i < dim; i++) {
+		int num = (rand() % (upper - lower + 1)) + lower;
+		vec_int_A[i] = num;
+	}
+	srand(4);
+	for (int i = 0; i < dim; i++) {
+		int num = (rand() % (upper - lower + 1)) + lower;
+		vec_int_B[i] = num;
+	}
+	printVector_int(vec_int_A, dim, 0);
+	printVector_int(vec_int_B, dim, 0);
+	
+	int* vec_int_Res_2_esperado = (int*) malloc(sizeof(int)*dim); 
+	for (int i = 0; i < dim; i++) {
+		vec_int_Res_2_esperado[i] = vec_int_A[i] +
+							(i%2==0 ? 1 : -1)*vec_int_B[i];
+	}
+	
+	SumarRestarAlternado(vec_int_A, vec_int_B, vec_int_Res_2, dim);
+	
+	printf("ESPERADO = \n");
+	printVector_int(vec_int_Res_2_esperado, dim, 0);
+	printf("RESULTADO = \n");
+	printVector_int(vec_int_Res_2, dim, 0);
+	
+	
 	free(vec_short_A);
 	free(vec_short_B);
 	free(vec_int_Res);
 	
 	free(vec_short_A_2);
 	free(vec_short_B_2);
+	
+	free(vec_int_A);
+	free(vec_int_B);
+	free(vec_int_Res_2);
+	free(vec_int_Res_2_esperado);
 	return 0;
 }
