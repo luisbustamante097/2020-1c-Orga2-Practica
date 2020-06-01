@@ -43,3 +43,9 @@ pminub, pminuw, pminud
 ```
 packsswb, packssdw, packuswb, packusdw
 ```
+# Instrucciones de reordenamiento de datos
+- Reordenamiento:
+```
+pshufb, pshufw, pshufd
+```
+
