@@ -9,6 +9,7 @@ movd, modq, movdqu
 paddb, paddw, paddd, paddq
 psubb, psubw, psubd, psubq
 ```
+
 # Instrucciones de comparacion, logicas y de nivel de bit
 - Comparacion:
 ```
@@ -43,9 +44,24 @@ pminub, pminuw, pminud
 ```
 packsswb, packssdw, packuswb, packusdw
 ```
+
 # Instrucciones de reordenamiento de datos
 - Reordenamiento:
 ```
 pshufb, pshufw, pshufd
 ```
 
+# Instrucciones de punto flotante
+- Mov. de datos:
+```
+movups, movaps
+movupd, movapd
+```
+- Aritmeticas:
+```
+addps,  addpd
+subps,  subpd
+mulps,  mulpd
+divps,  divpd
+sqrtps, sqrtpd
+```

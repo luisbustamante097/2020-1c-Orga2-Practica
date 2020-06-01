@@ -64,6 +64,7 @@ int main(int argc, char const *argv[]) {
 	free(vec_char_A);
 	free(vec_char_B);
 	free(vec_char_Res);
+	free(vec_char_Res_Esperado);
 	
 	return 0;
 }
