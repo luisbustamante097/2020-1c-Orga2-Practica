@@ -26,7 +26,7 @@ SEGMENTO 2:
 
 SEGMENTO 3:
     - BASE:         tengo en cuenta que 512MiB = 2^29 => 2GiB = 0b0010 0000 0000 0000 0000 0000 0000 0000
-            =>  0x40000000
+            =>  0x20000000
                     
     - LIMITE:       (OBS: sin apagar la granularidad)
             =>  0x00000
@@ -43,7 +43,7 @@ SEGMENTO 4:
 |-----------|---------------|---------------|
 |SEGMENTO 1 |0x00000000     |0x80000000     |
 |SEGMENTO 2 |0x80000000     |0xE0000000     |
-|SEGMENTO 3 |0x40000000     |0x40001000     |
+|SEGMENTO 3 |0x20000000     |0x20001000     |
 |SEGMENTO 4 |0xC0000000     |0xD0000000     |
 
 
@@ -54,8 +54,8 @@ SEGMENTO 4:
     ...   |                       |                        
           |                       \                    
           |                        |=======> SEGMENTO 1
-0x40000000|-----====> SEGMENTO 3  /                    
-0x40001000|----/                  |                      
+0x20000000|-----====> SEGMENTO 3  /                    
+0x20001000|----/                  |                      
           |                       |                                             
           |                       |                                             
     ...   |                       |                                             
