@@ -36,7 +36,7 @@ Debo pasar a la dir LINEAL 0x0A334FFA:
     --> Tipo = 0b0000
 ```
 
-## Logica -> Lineal (Paginacion)
+## Lineal -> Fisica (Paginacion)
 ```
 LINEAL: 0x0A334FFA
 
@@ -105,7 +105,7 @@ Debo pasar a la dir LINEAL 0x016A3124:
     --> Tipo = 0b1010
 ```
 
-## Logica -> Lineal (Paginacion)
+## Lineal -> Fisica (Paginacion)
 ```
 LINEAL: 0x016A3124
 
@@ -174,7 +174,7 @@ Debo pasar a la dir LINEAL 0x00D34FFA:
     --> Tipo = 0b1110   (Execute-Read, Conforming)
 ```
 
-## Logica -> Lineal (Paginacion)
+## Lineal -> Fisica (Paginacion)
 ```
 LINEAL: 0x00D34FFA
 
@@ -240,7 +240,7 @@ Debo pasar a la dir LINEAL 0x003F1DEE:
     --> Tipo = 0b0010
 ```
 
-## Logica -> Lineal (Paginacion)
+## Lineal -> Fisica (Paginacion)
 ```
 LINEAL: 0x003F1DEE
 
